@@ -10,6 +10,6 @@
   },
   "kv_namespaces": [
     // PLACEHOLDER: dashboard mein KV banane ke baad uski ID yahan paste karein (README step 3)
-    { "binding": "KV", "id": "PASTE_KV_NAMESPACE_ID_HERE" }
+    { "binding": "KV", "id": "2a389b9f4aff4b0bb4c884db9f62debb" }
   ]
 }
