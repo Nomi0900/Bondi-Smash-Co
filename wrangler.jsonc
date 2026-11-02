@@ -1,0 +1,15 @@
+{
+  // Worker ka naam: Cloudflare dashboard wale Worker/project ke naam se EXACT match hona chahiye
+  "name": "bondi-smash-co",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*", "/img/*"]
+  },
+  "kv_namespaces": [
+    // PLACEHOLDER: dashboard mein KV banane ke baad uski ID yahan paste karein (README step 3)
+    { "binding": "KV", "id": "PASTE_KV_NAMESPACE_ID_HERE" }
+  ]
+}

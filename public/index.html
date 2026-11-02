@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- PLACEHOLDER: brand name, title aur description yahan badal sakte hain -->
+<title>Bondi Smash Co. | Halal Smash Burgers & HSP</title>
+<meta name="description" content="Halal smash burgers, snack packs and loaded fries. Smashed, stacked, served hot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#14110F;--red:#E5322D;--mustard:#FFB81C;--cream:#F6EBD9;--brown:#2A201A;--head:'Anton','Impact','Arial Narrow',sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{background:var(--black);color:var(--cream);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 5vw 16px;background:linear-gradient(rgba(20,17,15,.85),rgba(20,17,15,0));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.logo{font-family:var(--head);font-size:1.5rem;letter-spacing:.04em;white-space:nowrap}
+.logo b{color:var(--mustard);font-weight:400}
+.nav a.cta{background:var(--red);color:#fff;text-decoration:none;font-weight:700;padding:.65em 1.3em;border-radius:99px;font-size:.9rem;white-space:nowrap}
+@media(max-width:480px){.logo{font-size:1.2rem}.nav a.cta{padding:.55em 1em;font-size:.8rem}}
+/* FILM: ek hi video, scroll ke saath aage barhti hai */
+.film{position:relative;height:640vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--black)}
+.vwrap{position:absolute;inset:0}
+.vwrap picture,.vwrap img,.vwrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(20,17,15,.65) 100%),linear-gradient(to top,rgba(20,17,15,.85) 0%,transparent 38%)}
+.copy{position:absolute;z-index:5;left:5vw;bottom:calc(env(safe-area-inset-bottom,0px) + 11vh);max-width:min(560px,90vw);pointer-events:none}
+.copy.on{pointer-events:auto}
+.eyebrow{display:block;color:var(--mustard);font-weight:700;letter-spacing:.3em;font-size:.72rem;text-transform:uppercase;margin-bottom:.8rem}
+h1{font-family:var(--head);font-weight:400;text-transform:uppercase;line-height:.92;font-size:clamp(3rem,8.5vw,7rem)}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+h1 .ln span{display:block;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .ln:nth-child(2) span{animation-delay:.15s;color:var(--mustard)}
+@keyframes rise{to{transform:none}}
+.sub{margin-top:1rem;font-size:clamp(1rem,2vw,1.2rem);opacity:0;animation:fade 1s .7s forwards}
+@keyframes fade{to{opacity:1}}
+.cap{opacity:0;transform:translateY(24px)}
+.cap .n{font-family:var(--head);color:var(--mustard);font-size:1rem;letter-spacing:.2em}
+.cap h2{font-family:var(--head);font-weight:400;text-transform:uppercase;line-height:.95;font-size:clamp(2.6rem,7vw,5.6rem);margin:.2rem 0 .6rem}
+.cap p{font-size:clamp(1rem,1.8vw,1.15rem);opacity:.9;max-width:34ch}
+.btns{margin-top:1.4rem;display:flex;gap:.7rem;flex-wrap:wrap}
+.btn{padding:.95em 1.7em;border-radius:99px;font-weight:700;text-decoration:none;font-size:1rem}
+.btn.red{background:var(--red);color:#fff}.btn.line{border:2px solid var(--cream);color:var(--cream)}
+.hint{position:absolute;z-index:5;right:5vw;bottom:calc(env(safe-area-inset-bottom,0px) + 11vh);display:flex;flex-direction:column;align-items:center;gap:.6rem;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mustard);font-weight:700}
+.hint i{width:2px;height:48px;background:linear-gradient(var(--mustard),transparent);animation:drip 1.8s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.bar{position:absolute;z-index:6;left:0;top:0;height:3px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left}
+/* phone: poora burger dikhane ke liye video square mein, beech mein */
+@media (max-aspect-ratio:1/1){
+ .vwrap{inset:auto;left:0;right:0;top:50%;height:100vw;transform:translateY(-50%)}
+ .stage::after{background:linear-gradient(var(--black) 0%,transparent 22%,transparent 78%,var(--black) 100%)}
+ .copy{left:6vw;right:6vw;bottom:calc(env(safe-area-inset-bottom,0px) + 5vh);max-width:none;text-align:center}
+ .copy.top{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 14vh)}
+ .cap p{margin:0 auto}.btns{justify-content:center}
+ h1{font-size:clamp(3rem,15vw,5rem)}
+ .hint{right:50%;transform:translateX(50%);bottom:calc(env(safe-area-inset-bottom,0px) + 4vh)}
+ .hint i{height:30px}
+}
+/* MARQUEE */
+.mq-wrap{overflow:hidden;position:relative;z-index:3;margin-top:-1.2rem;padding:1rem 0}
+.marquee{background:var(--mustard);color:var(--black);overflow:hidden;white-space:nowrap;transform:rotate(-1.5deg);margin:0 -2vw}
+.marquee div{display:inline-block;padding:.9rem 0;font-family:var(--head);font-size:clamp(1.4rem,4vw,2.4rem);letter-spacing:.05em;animation:slide 22s linear infinite}
+.marquee i{color:var(--red);font-style:normal;margin:0 1.2rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+/* MENU */
+.menu{padding:14vh 5vw 10vh;background:var(--cream);color:var(--black)}
+.menu h3,.reviews h3{font-family:var(--head);font-weight:400;font-size:clamp(2.4rem,8vw,6rem);text-transform:uppercase;line-height:.95;margin-bottom:2rem}
+.menu h3 em,.reviews h3 em{color:var(--red);font-style:normal}
+.cats{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}.cats button{border:2px solid var(--black);background:none;border-radius:99px;padding:.5em 1.1em;font-weight:700;cursor:pointer;font-size:.95rem}.cats button.on{background:var(--black);color:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.4rem;max-width:1250px;margin:0 auto}
+.card{aspect-ratio:3/4;border-radius:22px;background:linear-gradient(160deg,var(--brown),var(--black)) center/cover;color:var(--cream);position:relative;overflow:hidden;will-change:transform;display:flex;flex-direction:column;justify-content:flex-end;padding:1.1rem}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}.card:hover img{transform:scale(1.07)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,15,.92) 0%,rgba(20,17,15,.35) 45%,transparent 70%)}
+.card>*:not(img){position:relative;z-index:2}
+.card h4{font-family:var(--head);font-weight:400;font-size:1.6rem;text-transform:uppercase;line-height:1}.card p{opacity:.8;font-size:.85rem;margin:.3rem 0 .6rem}
+.card .pr{display:flex;justify-content:space-between;align-items:center}.card .pr b{color:var(--mustard);font-size:1.15rem}
+.add{background:var(--red);color:#fff;border:0;border-radius:99px;padding:.55em 1.1em;font-weight:700;cursor:pointer}.add:disabled{background:#555;cursor:not-allowed}
+.sold{position:absolute;z-index:3;top:1rem;right:1rem;background:var(--mustard);color:var(--black);font-weight:700;font-size:.7rem;letter-spacing:.1em;padding:.3em .8em;border-radius:99px}
+/* CART */
+#cartBtn{position:fixed;z-index:40;right:1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);background:var(--red);color:#fff;border:0;border-radius:99px;padding:.9em 1.4em;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.4);display:none}
+#drawer{position:fixed;z-index:50;top:0;right:0;bottom:0;width:min(440px,100vw);background:var(--cream);color:var(--black);transform:translateX(100%);transition:transform .4s;overflow-y:auto;padding:1.2rem;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 1.2rem)}
+#drawer.open{transform:none}#veil{position:fixed;inset:0;z-index:45;background:rgba(0,0,0,.6);display:none}#veil.open{display:block}
+#drawer h5{font:400 2rem var(--head);text-transform:uppercase;display:flex;justify-content:space-between}#drawer h5 button{background:none;border:0;font-size:1.6rem;cursor:pointer}
+.ci{display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:1px dashed #cdbb9b}.qty{display:flex;align-items:center;gap:.5rem}.qty button{width:28px;height:28px;border-radius:50%;border:2px solid var(--black);background:none;font-weight:700;cursor:pointer}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin:1rem 0}.seg button{padding:.7em;border:2px solid var(--black);background:none;border-radius:10px;font-weight:700;cursor:pointer}.seg button.on{background:var(--black);color:var(--cream)}
+#drawer input,#drawer textarea,.rform input,.rform textarea,.rform select{width:100%;border:1px solid #cdbb9b;background:#fffaf0;border-radius:8px;padding:.7em;margin-bottom:.5rem;font:inherit}
+.tot{display:flex;justify-content:space-between;padding:.2rem 0}.tot.big{font:400 1.6rem var(--head);border-top:2px solid var(--black);margin-top:.4rem;padding-top:.6rem}
+.note{font-size:.85rem;background:#ecdcc0;border-radius:8px;padding:.7rem;margin:.8rem 0}.err{color:var(--red);font-weight:700;margin:.5rem 0}
+.place{width:100%;background:var(--red);color:#fff;border:0;border-radius:12px;padding:1em;font-weight:700;font-size:1.05rem;cursor:pointer}.place:disabled{opacity:.6}
+/* REVIEWS + FOOTER */
+.reviews{padding:12vh 5vw;background:var(--black)}.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;max-width:1250px;margin:0 auto 3rem}
+.rc{background:var(--brown);border-radius:16px;padding:1.3rem}.rc .st{color:var(--mustard);letter-spacing:.15em}.rc p{margin:.6rem 0;opacity:.9}.rc b{font-size:.9rem;opacity:.7}
+.rform{max-width:520px;margin:0 auto;background:var(--cream);color:var(--black);border-radius:16px;padding:1.4rem}.rform h4{font:400 1.6rem var(--head);text-transform:uppercase;margin-bottom:.8rem}.rform button{background:var(--black);color:var(--cream);border:0;border-radius:10px;padding:.8em 1.4em;font-weight:700;cursor:pointer}
+footer{background:#0d0b09;padding:8vh 5vw 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;font-size:.95rem}
+footer h6{font:400 1.3rem var(--head);color:var(--mustard);text-transform:uppercase;margin-bottom:.6rem;letter-spacing:.05em}footer a{color:var(--cream);text-decoration:none;display:block;margin:.2rem 0;opacity:.85}footer .cp{grid-column:1/-1;opacity:.5;font-size:.8rem;text-align:center}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+/* reduced motion: video scrub nahin, sirf final burger ki tasveer */
+.reduce .film{height:100svh}.reduce .cap,.reduce .hint,.reduce .bar{display:none}
+.reduce h1 .ln span{animation:none;transform:none}.reduce .sub{animation:none;opacity:1}
+.reduce .marquee div{animation:none}.reduce .marquee{transform:none}.reduce .rv{opacity:1;transform:none;transition:none}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="logo">BONDI <b>SMASH</b> CO.</div><a class="cta" href="#menu">Order Now</a></nav>
+
+<section class="film" id="film">
+ <div class="stage">
+  <div class="bar" id="bar"></div>
+  <div class="vwrap">
+   <picture id="pStart"><source media="(max-aspect-ratio: 1/1)" srcset="img/film-poster-m.jpg"><img alt="" src="img/film-poster.jpg"></picture>
+   <picture id="pEnd" hidden><source media="(max-aspect-ratio: 1/1)" srcset="img/film-end-m.jpg"><img alt="" src="img/film-end.jpg"></picture>
+   <video id="v" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
+  </div>
+  <div class="copy top" id="c0">
+   <span class="eyebrow">100% Halal · Sydney Style</span>
+   <h1><span class="ln"><span>Smashed.</span></span><span class="ln"><span>Stacked.</span></span></h1>
+   <p class="sub">Halal smash burgers, served hot.</p>
+  </div>
+  <div class="copy cap" id="c1"><span class="n">01</span><h2>Smashed</h2><p>Fresh beef, crushed on a screaming-hot grill for that crispy lacy edge.</p></div>
+  <div class="copy cap" id="c2"><span class="n">02</span><h2>Stacked</h2><p>Melted cheese, pickles and our special sauce, built to order.</p></div>
+  <div class="copy cap" id="c3"><span class="n">03</span><h2>Served Hot</h2><p>Halal, fresh and ready for you.</p><div class="btns"><a class="btn red" href="#menu">Order Now</a><a class="btn line" href="#menu">View Menu</a></div></div>
+  <div class="hint" id="hint"><span>Scroll</span><i></i></div>
+ </div>
+</section>
+
+<div class="mq-wrap"><div class="marquee" aria-hidden="true"><div>
+<span>SMASHED<i>●</i>STACKED<i>●</i>SERVED HOT<i>●</i>100% HALAL<i>●</i>HSP<i>●</i>LOADED FRIES<i>●</i></span><span>SMASHED<i>●</i>STACKED<i>●</i>SERVED HOT<i>●</i>100% HALAL<i>●</i>HSP<i>●</i>LOADED FRIES<i>●</i></span>
+</div></div></div>
+
+<section class="menu" id="menu">
+ <h3 class="rv">Signature <em>Menu</em></h3>
+ <div class="cats" id="cats"></div>
+ <div class="grid" id="grid"><p>Loading menu...</p></div>
+</section>
+
+<section class="reviews" id="reviews">
+ <h3 class="rv">What <em style="color:var(--mustard)">they say</em></h3>
+ <div class="rgrid" id="rgrid"></div>
+ <form class="rform" id="rform"><h4>Leave a review</h4><input name="name" placeholder="Your name" maxlength="40" required>
+  <select name="rating"><option value="5">★★★★★ 5</option><option value="4">★★★★☆ 4</option><option value="3">★★★☆☆ 3</option><option value="2">★★☆☆☆ 2</option><option value="1">★☆☆☆☆ 1</option></select>
+  <textarea name="text" rows="3" placeholder="Tell us about your meal" maxlength="400" required></textarea><button>Submit review</button><p id="rmsg" style="margin-top:.6rem"></p></form>
+</section>
+
+<footer id="foot"></footer>
+
+<button id="cartBtn"></button><div id="veil"></div>
+<aside id="drawer" aria-label="Your order"></aside>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var portrait=matchMedia('(max-aspect-ratio: 1/1)');
+var v=$('v'),film=$('film'),bar=$('bar'),hint=$('hint'),c0=$('c0');
+var caps=[[$('c1'),.07,.44],[$('c2'),.52,.80],[$('c3'),.86,2]];
+function clamp(x){return Math.max(0,Math.min(1,x))}
+/* reduced motion: video hata do, final burger tasveer dikhao */
+if(reduce){document.documentElement.classList.add('reduce');v.remove();$('pStart').remove();$('pEnd').hidden=false;c0.classList.add('on')}
+else{
+ var target=0,cur=0,dur=0,ready=false;
+ function setSrc(){var b='videos/film-'+(portrait.matches?'mobile':'desktop');if(v.dataset.b===b)return;v.dataset.b=b;ready=false;
+  v.innerHTML='<source src="'+b+'.mp4" type="video/mp4"><source src="'+b+'.webm" type="video/webm">';v.load()}
+ v.addEventListener('loadedmetadata',function(){dur=v.duration});
+ v.addEventListener('loadeddata',function(){ready=true;dur=v.duration;
+  /* iPhone par seek chalane ke liye ek baar play/pause */
+  var p=v.play();if(p&&p.then)p.then(function(){v.pause();v.currentTime=cur*dur}).catch(function(){})});
+ setSrc();portrait.addEventListener('change',setSrc);
+ function loop(){
+  var d=target-cur;cur=Math.abs(d)<.0004?target:cur+d*.14;
+  if(ready&&dur){var t=Math.min(cur*dur,dur-.04);if(!v.seeking&&Math.abs(v.currentTime-t)>.025){v.currentTime=t}}
+  requestAnimationFrame(loop)}
+ requestAnimationFrame(loop);
+}
+
+function onScroll(){
+ var vh=innerHeight,r=film.getBoundingClientRect(),p=reduce?0:clamp(-r.top/(film.offsetHeight-vh));
+ if(!reduce){target=p;bar.style.transform='scaleX('+p+')';
+  var o=1-clamp(p/.05);c0.style.opacity=o;c0.style.transform='translateY('+(-p*vh*2)+'px)';hint.style.opacity=o;
+  caps.forEach(function(c){var a=c[1],b=c[2],x=clamp((p-a)/.035)*clamp((b-p)/.035);c[0].style.opacity=x;c[0].style.transform='translateY('+((1-x)*24)+'px)';c[0].classList.toggle('on',x>.5)})
+  var vh2=innerHeight;[].forEach.call(document.querySelectorAll('.card'),function(k){var kr=k.getBoundingClientRect();k.style.transform='translateY('+((kr.top+kr.height/2-vh2/2)*(parseFloat(k.dataset.speed)||0))+'px)'})}
+}
+var tk=false;function req(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;onScroll()})}}
+addEventListener('scroll',req,{passive:true});addEventListener('resize',req);onScroll();
+var rv=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window&&!reduce){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.2});rv.forEach(function(r){io.observe(r)})}else rv.forEach(function(r){r.classList.add('in')});
+})();
+</script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var S={},menu=[],cart={},type='pickup',cat='All';
+function money(n){return (S.currency||'$')+(Math.round(n*100)/100).toFixed(2)}
+function load(){fetch('/api/public').then(function(r){return r.json()}).then(function(d){S=d.settings;menu=d.menu;draw();reviews(d.reviews);foot()}).catch(function(){$('grid').innerHTML='<p>Menu abhi load nahin ho saka. Dobara try karein.</p>'})}
+function draw(){var cats=['All'].concat(menu.map(function(i){return i.cat}).filter(function(c,n,a){return a.indexOf(c)===n}));
+ $('cats').innerHTML=cats.map(function(c){return '<button class="'+(c===cat?'on':'')+'" data-c="'+esc(c)+'">'+esc(c)+'</button>'}).join('');
+ [].forEach.call($('cats').children,function(b){b.onclick=function(){cat=b.dataset.c;draw()}});
+ $('grid').innerHTML=menu.filter(function(i){return cat==='All'||i.cat===cat}).map(function(i,n){return '<article class="card" data-speed="'+[.05,-.04,.07,-.06][n%4]+'">'+(i.img?'<img loading="lazy" alt="'+esc(i.name)+'" src="'+esc(i.img)+'">':'')+(i.soldOut?'<span class="sold">SOLD OUT</span>':'')+'<h4>'+esc(i.name)+'</h4><p>'+esc(i.desc)+'</p><div class="pr"><b>'+money(i.price)+'</b><button class="add" data-id="'+esc(i.id)+'" '+(i.soldOut||!S.orderingOpen?'disabled':'')+'>'+(i.soldOut?'Sold out':'Add +')+'</button></div></article>'}).join('')||'<p>No items.</p>';
+ [].forEach.call(document.querySelectorAll('.add'),function(b){b.onclick=function(){cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;sync();b.textContent='Added ✓';setTimeout(function(){b.textContent='Add +'},700)}})}
+function lines(){return Object.keys(cart).map(function(id){var m=menu.filter(function(x){return x.id===id})[0];return m&&!m.soldOut?{m:m,q:cart[id]}:null}).filter(Boolean)}
+function sub(){return lines().reduce(function(a,l){return a+l.m.price*l.q},0)}
+function sync(){var n=lines().reduce(function(a,l){return a+l.q},0),b=$('cartBtn');b.style.display=n?'block':'none';b.textContent='🛒 View order · '+n+' · '+money(sub());b.onclick=openCart;if(!n)closeCart();if($('drawer').classList.contains('open'))cartUI()}
+function openCart(){$('drawer').classList.add('open');$('veil').classList.add('open');cartUI()}
+function closeCart(){keep();$('drawer').classList.remove('open');$('veil').classList.remove('open')}
+$('veil').onclick=closeCart;
+var form={name:'',phone:'',address:'',notes:''};
+function cartUI(){var L=lines(),fee=type==='delivery'?+S.deliveryFee||0:0,t=sub()+fee;
+ $('drawer').innerHTML='<h5>Your order<button id="x" aria-label="Close">×</button></h5>'+L.map(function(l){return '<div class="ci"><div><b>'+esc(l.m.name)+'</b><br>'+money(l.m.price)+'</div><div class="qty"><button data-d="-1" data-i="'+esc(l.m.id)+'">−</button><b>'+l.q+'</b><button data-d="1" data-i="'+esc(l.m.id)+'">+</button></div></div>'}).join('')+
+ '<div class="seg"><button data-t="pickup" class="'+(type==='pickup'?'on':'')+'">Pickup</button><button data-t="delivery" class="'+(type==='delivery'?'on':'')+'">Delivery</button></div>'+
+ '<input id="fn" placeholder="Your name" value="'+esc(form.name)+'"><input id="fp" type="tel" placeholder="Phone number" value="'+esc(form.phone)+'">'+(type==='delivery'?'<input id="fa" placeholder="Delivery address" value="'+esc(form.address)+'">':'')+'<textarea id="fo" rows="2" placeholder="Notes (optional)">'+esc(form.notes)+'</textarea>'+
+ '<div class="tot"><span>Subtotal</span><span>'+money(sub())+'</span></div>'+(fee?'<div class="tot"><span>Delivery</span><span>'+money(fee)+'</span></div>':'')+'<div class="tot big"><span>Total</span><span>'+money(t)+'</span></div>'+
+ (S.minOrder>0?'<div class="mut" style="font-size:.8rem">Minimum order '+money(S.minOrder)+'</div>':'')+'<div class="note"><b>Payment:</b> '+esc(S.payment)+'</div><div class="err" id="er"></div><button class="place" id="po">Place order · '+money(t)+'</button>';
+ $('x').onclick=closeCart;
+ [].forEach.call($('drawer').querySelectorAll('[data-d]'),function(b){b.onclick=function(){keep();var id=b.dataset.i;cart[id]=(cart[id]||0)+ +b.dataset.d;if(cart[id]<=0)delete cart[id];sync()}});
+ [].forEach.call($('drawer').querySelectorAll('[data-t]'),function(b){b.onclick=function(){keep();type=b.dataset.t;cartUI()}});
+ $('po').onclick=place}
+function keep(){if(!$('fo'))return;form.name=($('fn')||{}).value||form.name;form.phone=($('fp')||{}).value||form.phone;if($('fa'))form.address=$('fa').value;form.notes=$('fo').value}
+function place(){keep();var b=$('po');b.disabled=true;b.textContent='Placing order...';
+ fetch('/api/order',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:form.name,phone:form.phone,type:type,address:form.address,notes:form.notes,items:lines().map(function(l){return{id:l.m.id,qty:l.q}})})})
+ .then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})}).then(function(x){
+  if(!x.ok){$('er').textContent=x.j.error||'Error';b.disabled=false;b.textContent='Place order';return}
+  var wa=S.whatsapp?'https://wa.me/'+String(S.whatsapp).replace(/\D/g,'')+'?text='+encodeURIComponent('Hi! My order '+x.j.id+' ('+money(x.j.total)+'). Name: '+form.name):'';
+  cart={};$('cartBtn').style.display='none';
+  $('drawer').innerHTML='<h5>Thank you!<button id="x">×</button></h5><p style="margin:1rem 0"><b>Order '+esc(x.j.id)+'</b> receive ho gaya. Total '+money(x.j.total)+'.</p><div class="note"><b>Payment:</b> '+esc(S.payment)+'</div>'+(wa?'<a class="place" style="display:block;text-align:center;text-decoration:none;background:#25D366" href="'+esc(wa)+'" target="_blank" rel="noopener">Confirm on WhatsApp</a>':'');$('x').onclick=closeCart})
+ .catch(function(){$('er').textContent='Network error. Dobara try karein.';b.disabled=false;b.textContent='Place order'})}
+function reviews(r){$('rgrid').innerHTML=r.length?r.map(function(x){return '<div class="rc"><div class="st">'+'★'.repeat(x.rating)+'☆'.repeat(5-x.rating)+'</div><p>'+esc(x.text)+'</p><b>— '+esc(x.name)+'</b></div>'}).join(''):'<p style="opacity:.6;text-align:center;grid-column:1/-1">Be the first to review us!</p>'}
+$('rform').onsubmit=function(e){e.preventDefault();var f=e.target;fetch('/api/review',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:f.name.value,rating:f.rating.value,text:f.text.value})}).then(function(r){return r.json()}).then(function(j){$('rmsg').textContent=j.ok?'Shukriya! Review approval ke baad dikhega.':(j.error||'Error');if(j.ok)f.reset()})};
+function foot(){var soc=[['instagram','Instagram'],['facebook','Facebook'],['tiktok','TikTok']].filter(function(k){return S[k[0]]}).map(function(k){return '<a href="'+esc(S[k[0]])+'" target="_blank" rel="noopener">'+k[1]+'</a>'}).join('');
+ $('foot').innerHTML='<div><h6>'+esc(S.name)+'</h6><p>100% Halal. Smashed, stacked, served hot.</p></div><div><h6>Hours</h6><p>'+esc(S.hours)+'</p></div><div><h6>Find us</h6><p>'+esc(S.address)+'</p><a href="tel:'+esc(S.phone)+'">'+esc(S.phone)+'</a>'+(S.whatsapp?'<a href="https://wa.me/'+esc(String(S.whatsapp).replace(/\D/g,''))+'">WhatsApp</a>':'')+'</div><div><h6>Follow</h6>'+(soc||'<p style="opacity:.6">—</p>')+'</div><div class="cp">© '+new Date().getFullYear()+' '+esc(S.name)+'</div>'}
+load();
+})();
+</script>
+</body>
+</html>

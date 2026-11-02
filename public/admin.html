@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Admin | Bondi Smash Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F6EBD9;--ink:#14110F;--red:#E5322D;--mus:#FFB81C;--line:#d9c7a8;--card:#fffaf0;--green:#5B7F3A;--h:'Anton','Impact',sans-serif}
+[hidden]{display:none!important}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--paper);color:var(--ink);font:15px/1.4 'DM Sans',system-ui,sans-serif}
+button,input,select,textarea{font:inherit}a{color:inherit}
+.top{position:sticky;top:0;z-index:5;background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:1rem;padding:.7rem 1rem;flex-wrap:wrap}
+.top h1{font:400 1.4rem var(--h);letter-spacing:.04em}.top h1 b{color:var(--mus);font-weight:400}
+.tabs{display:flex;gap:.3rem;flex-wrap:wrap;flex:1}.tabs button{background:none;border:0;color:var(--paper);padding:.5rem .9rem;border-radius:99px;cursor:pointer;font-weight:700}
+.tabs button.on{background:var(--mus);color:var(--ink)}.badge{background:var(--red);color:#fff;border-radius:99px;padding:0 .5em;font-size:.75rem;margin-left:.3em}
+.btn{background:var(--ink);color:var(--paper);border:0;border-radius:8px;padding:.5rem .9rem;cursor:pointer;font-weight:700}.btn.red{background:var(--red);color:#fff}.btn.ghost{background:none;border:2px solid var(--ink);color:var(--ink)}.btn.sm{padding:.3rem .6rem;font-size:.8rem}
+.top .btn{background:none;border:1px solid #6b5e50;color:var(--paper)}
+main{padding:1rem;max-width:1500px;margin:auto}
+.board{display:grid;grid-template-columns:repeat(5,minmax(230px,1fr));gap:.8rem;overflow-x:auto;padding-bottom:1rem}
+.col{background:#ecdcc0;border-radius:12px;padding:.6rem;min-height:60vh}.col.over{outline:3px dashed var(--red)}
+.col h3{font:400 1.1rem var(--h);letter-spacing:.05em;text-transform:uppercase;margin:.2rem .2rem .6rem;display:flex;justify-content:space-between}
+.ticket{background:var(--card);border-radius:6px;padding:.7rem .8rem;margin-bottom:.6rem;border-top:6px solid var(--mus);box-shadow:0 2px 0 var(--line);cursor:grab;position:relative}
+.ticket.new{border-top-color:var(--red)}.ticket.done{border-top-color:var(--green);opacity:.75}.ticket.cancelled{border-top-color:#888;opacity:.6}
+.ticket:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:6px;background:radial-gradient(circle at 6px 0,transparent 5px,var(--card) 5.5px) 0 0/12px 6px}
+.ticket b.id{font:400 1.1rem var(--h);letter-spacing:.05em}.tag{display:inline-block;background:var(--mus);border-radius:4px;padding:0 .4em;font-size:.72rem;font-weight:700;text-transform:uppercase}.tag.del{background:var(--red);color:#fff}
+.ticket ul{margin:.4rem 0 .4rem 1.1rem}.ticket .row{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.5rem}.mut{opacity:.65;font-size:.82rem}
+.menu-list{display:grid;gap:.8rem}.item{background:var(--card);border-radius:10px;padding:.8rem;display:grid;grid-template-columns:96px 1fr;gap:.9rem;border:1px solid var(--line)}
+.item.so{opacity:.85}.thumb{aspect-ratio:3/4;background:#ecdcc0 center/cover;border-radius:8px;display:grid;place-items:center;font-size:.7rem;text-align:center;color:#8a7a62}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem}.f label{display:grid;gap:.15rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+input,select,textarea{border:1px solid var(--line);background:#fff;border-radius:6px;padding:.45rem .55rem;width:100%}
+.sw{display:flex;align-items:center;gap:.4rem;font-weight:700;font-size:.82rem}.sw input{width:auto;accent-color:var(--red);transform:scale(1.3)}
+.rev{background:var(--card);border-radius:10px;padding:.8rem;margin-bottom:.6rem;border-left:6px solid var(--mus)}.rev.ok{border-color:var(--green)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem;max-width:760px}
+#login{min-height:100vh;display:grid;place-items:center}#login .box{width:min(380px,92vw)}#login h2{font:400 2rem var(--h);margin-bottom:.8rem}
+#toast{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:.6rem 1.1rem;border-radius:99px;opacity:0;transition:.3s;pointer-events:none;z-index:9}#toast.on{opacity:1}
+@media(max-width:600px){.item{grid-template-columns:72px 1fr}}
+</style></head><body>
+<div id="login"><div class="box"><h2>ADMIN LOGIN</h2><p class="mut" style="margin-bottom:.8rem">Password wohi hai jo aap ne Cloudflare mein ADMIN_PASSWORD (Secret) mein set kiya.</p>
+<input id="pw" type="password" placeholder="Password" autocomplete="current-password"><p id="lerr" style="color:var(--red);margin:.5rem 0"></p><button class="btn red" id="lbtn" style="width:100%">Login</button></div></div>
+<div id="app" hidden>
+<div class="top"><h1>BONDI <b>SMASH</b> · ADMIN</h1>
+<div class="tabs"><button data-t="orders">Orders<span class="badge" id="nb" hidden></span></button><button data-t="menu">Menu</button><button data-t="reviews">Reviews<span class="badge" id="rb" hidden></span></button><button data-t="settings">Settings</button></div>
+<button class="btn sm" id="csvO">CSV Orders</button><button class="btn sm" id="csvR">CSV Reviews</button><button class="btn sm" id="out">Logout</button></div>
+<main id="main"></main></div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let T=sessionStorage.getItem('t')||'',D={orders:[],menu:[],reviews:[],settings:{}},tab='orders',known=null,dragKey=null;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)};
+async function api(p,o={}){const r=await fetch('/api/admin/'+p,{...o,headers:{...(o.headers||{}),authorization:'Bearer '+T}});if(r.status===401){logout();throw 0}return r}
+function logout(){T='';sessionStorage.removeItem('t');$('#app').hidden=true;$('#login').hidden=false}
+async function login(){$('#lerr').textContent='';const r=await fetch('/api/admin/login',{method:'POST',body:JSON.stringify({password:$('#pw').value})});const j=await r.json();
+ if(!r.ok){$('#lerr').textContent=j.error||'Error';return}T=j.token;sessionStorage.setItem('t',T);start()}
+$('#lbtn').onclick=login;$('#pw').onkeydown=e=>e.key==='Enter'&&login();$('#out').onclick=logout;
+function beep(){try{const a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=880;g.gain.setValueAtTime(.3,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.6);o.start();o.stop(a.currentTime+.6)}catch(e){}}
+async function load(quiet){const r=await api('data');D=await r.json();
+ const fresh=D.orders.filter(o=>o.status==='new').map(o=>o.key);
+ if(known&&fresh.some(k=>!known.has(k))){beep();toast('Naya order aaya!');document.title='(NEW) Admin | Bondi Smash Co.'}else if(!fresh.length)document.title='Admin | Bondi Smash Co.';
+ known=new Set(D.orders.map(o=>o.key));render()}
+function start(){$('#login').hidden=true;$('#app').hidden=false;load().catch(()=>{});setInterval(()=>{if(T&&tab==='orders'&&!dragKey)load(1).catch(()=>{})},15000)}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+const ST=[['new','New'],['preparing','Preparing'],['ready','Ready'],['done','Done'],['cancelled','Cancelled']];
+async function setStatus(key,s){await api('order',{method:'PATCH',body:JSON.stringify({key,status:s})});D.orders.find(o=>o.key===key).status=s;render()}
+function render(){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
+ const n=D.orders.filter(o=>o.status==='new').length,pr=D.reviews.filter(r=>!r.approved).length;$('#nb').hidden=!n;$('#nb').textContent=n;$('#rb').hidden=!pr;$('#rb').textContent=pr;
+ ({orders:rOrders,menu:rMenu,reviews:rReviews,settings:rSettings})[tab]()}
+function rOrders(){const c=D.settings.currency||'$';$('#main').innerHTML='<div class="board">'+ST.map(([k,l])=>{const os=D.orders.filter(o=>o.status===k);
+ return `<div class="col" data-s="${k}"><h3>${l}<span>${os.length}</span></h3>${os.map(o=>{const i=ST.findIndex(x=>x[0]===o.status);return `<div class="ticket ${o.status}" draggable="true" data-k="${esc(o.key)}">
+ <b class="id">${esc(o.id)}</b> <span class="tag ${o.type==='delivery'?'del':''}">${o.type}</span><div class="mut">${new Date(o.createdAt).toLocaleString()}</div>
+ <div><b>${esc(o.name)}</b> · <a href="tel:${esc(o.phone)}">${esc(o.phone)}</a></div>${o.address?`<div>${esc(o.address)}</div>`:''}
+ <ul>${o.items.map(x=>`<li>${x.qty}× ${esc(x.name)}</li>`).join('')}</ul>${o.notes?`<div class="mut">Note: ${esc(o.notes)}</div>`:''}
+ <div><b>Total ${esc(c)}${o.total}</b>${o.fee?` <span class="mut">(incl. ${esc(c)}${o.fee} delivery)</span>`:''}</div>
+ <div class="row">${i>0&&i<4?`<button class="btn sm ghost" data-m="${ST[i-1][0]}">← ${ST[i-1][1]}</button>`:''}${i<3?`<button class="btn sm red" data-m="${ST[i+1][0]}">${ST[i+1][1]} →</button>`:''}${o.status!=='cancelled'&&o.status!=='done'?`<button class="btn sm ghost" data-m="cancelled">Cancel</button>`:''}</div></div>`}).join('')||'<p class="mut">—</p>'}</div>`}).join('')+'</div>';
+ document.querySelectorAll('.ticket').forEach(t=>{t.ondragstart=()=>dragKey=t.dataset.k;t.ondragend=()=>dragKey=null;t.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>setStatus(t.dataset.k,b.dataset.m))});
+ document.querySelectorAll('.col').forEach(c=>{c.ondragover=e=>{e.preventDefault();c.classList.add('over')};c.ondragleave=()=>c.classList.remove('over');c.ondrop=e=>{e.preventDefault();c.classList.remove('over');if(dragKey)setStatus(dragKey,c.dataset.s)}})}
+let saveT;function saveMenu(){clearTimeout(saveT);saveT=setTimeout(async()=>{const r=await api('menu',{method:'PUT',body:JSON.stringify(D.menu)});if(r.ok){D.menu=(await r.json()).menu;toast('Menu saved')}else toast('Save error')},500)}
+function crop34(file){return new Promise((res,rej)=>{const im=new Image();im.onload=()=>{const W=900,H=1200,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;x.drawImage(im,(W-w)/2,(H-h)/2,w,h);c.toBlob(b=>b?res(b):rej(),'image/jpeg',.85)};im.onerror=rej;im.src=URL.createObjectURL(file)})}
+function rMenu(){const cats=[...new Set(D.menu.map(i=>i.cat))];$('#main').innerHTML=`<p style="margin-bottom:.8rem"><button class="btn red" id="add">+ Add item</button> <span class="mut">Photo upload karte hi apne aap 3:4 crop hoti hai. Har tabdeeli khud save hoti hai.</span></p><datalist id="cats">${cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist><div class="menu-list">`+D.menu.map((i,n)=>`<div class="item ${i.soldOut?'so':''}" data-n="${n}">
+ <div><div class="thumb" style="${i.img?`background-image:url(${esc(i.img)})`:''}">${i.img?'':'No photo<br>3:4'}</div><label class="btn sm ghost" style="display:block;text-align:center;margin-top:.4rem;cursor:pointer">Photo<input type="file" accept="image/*" hidden data-f></label></div>
+ <div><div class="f"><label>Name<input data-k="name" value="${esc(i.name)}"></label><label>Price<input data-k="price" type="number" step="0.5" min="0" value="${i.price}"></label><label>Category<input data-k="cat" list="cats" value="${esc(i.cat)}"></label></div>
+ <label style="display:grid;gap:.15rem;font-size:.75rem;font-weight:700;margin:.5rem 0;text-transform:uppercase">Description<input data-k="desc" value="${esc(i.desc)}"></label>
+ <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center"><label class="sw"><input type="checkbox" data-k="soldOut" ${i.soldOut?'checked':''}>SOLD OUT</label><label class="sw"><input type="checkbox" data-k="hidden" ${i.hidden?'checked':''}>Hide from site</label>
+ <button class="btn sm ghost" data-up>↑</button><button class="btn sm ghost" data-dn>↓</button><button class="btn sm red" data-del>Delete</button></div></div></div>`).join('')+'</div>';
+ $('#add').onclick=()=>{D.menu.push({id:'i'+Date.now(),name:'New item',desc:'',price:10,cat:cats[0]||'Menu',img:'',soldOut:false,hidden:false});saveMenu();rMenu()};
+ document.querySelectorAll('.item').forEach(el=>{const i=D.menu[+el.dataset.n];
+  el.querySelectorAll('[data-k]').forEach(f=>f.onchange=()=>{const k=f.dataset.k;i[k]=f.type==='checkbox'?f.checked:k==='price'?+f.value||0:f.value;saveMenu();if(f.type==='checkbox')rMenu()});
+  el.querySelector('[data-f]').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{toast('Uploading...');const b=await crop34(f);const r=await api('upload',{method:'POST',headers:{'content-type':'image/jpeg'},body:b});const j=await r.json();if(!r.ok)throw j.error;i.img=j.url;saveMenu();rMenu()}catch(x){toast('Upload fail: '+(x||''))}};
+  el.querySelector('[data-del]').onclick=()=>{if(confirm('Delete "'+i.name+'"?')){D.menu.splice(+el.dataset.n,1);saveMenu();rMenu()}};
+  el.querySelector('[data-up]').onclick=()=>{const n=+el.dataset.n;if(n>0){[D.menu[n-1],D.menu[n]]=[D.menu[n],D.menu[n-1]];saveMenu();rMenu()}};
+  el.querySelector('[data-dn]').onclick=()=>{const n=+el.dataset.n;if(n<D.menu.length-1){[D.menu[n+1],D.menu[n]]=[D.menu[n],D.menu[n+1]];saveMenu();rMenu()}}})}
+async function revAct(key,body){await api('review',{method:'PATCH',body:JSON.stringify({key,...body})});await load()}
+function rReviews(){const card=r=>`<div class="rev ${r.approved?'ok':''}"><b>${esc(r.name)}</b> ${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)} <span class="mut">${new Date(r.createdAt).toLocaleDateString()}</span><p>${esc(r.text)}</p>
+ <button class="btn sm ${r.approved?'ghost':'red'}" data-a="${esc(r.key)}" data-v="${r.approved?0:1}">${r.approved?'Unapprove':'Approve'}</button> <button class="btn sm ghost" data-d="${esc(r.key)}">Delete</button></div>`;
+ const p=D.reviews.filter(r=>!r.approved),a=D.reviews.filter(r=>r.approved);
+ $('#main').innerHTML=`<h2 style="font:400 1.5rem var(--h);margin-bottom:.6rem">PENDING (${p.length})</h2>${p.map(card).join('')||'<p class="mut">Koi pending review nahin.</p>'}<h2 style="font:400 1.5rem var(--h);margin:1rem 0 .6rem">LIVE ON SITE (${a.length})</h2>${a.map(card).join('')||'<p class="mut">—</p>'}`;
+ document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>revAct(b.dataset.a,{approved:b.dataset.v==='1'}));document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>confirm('Delete review?')&&revAct(b.dataset.d,{delete:true}))}
+const SF=[['name','Business name'],['phone','Phone'],['whatsapp','WhatsApp (digits only, e.g. 61400000000)'],['address','Address'],['hours','Opening hours'],['deliveryFee','Delivery fee'],['minOrder','Minimum order'],['currency','Currency symbol'],['instagram','Instagram URL'],['facebook','Facebook URL'],['tiktok','TikTok URL']];
+function rSettings(){const s=D.settings;$('#main').innerHTML=`<div class="box"><div class="f">${SF.map(([k,l])=>`<label>${l}<input data-s="${k}" value="${esc(s[k])}"></label>`).join('')}</div>
+ <label style="display:grid;gap:.15rem;font-size:.75rem;font-weight:700;text-transform:uppercase;margin:.8rem 0">Payment instructions (checkout par dikhengi)<textarea data-s="payment" rows="3">${esc(s.payment)}</textarea></label>
+ <label class="sw"><input type="checkbox" data-s="orderingOpen" ${s.orderingOpen?'checked':''}>Ordering open (band karne par customers order nahin de sakte)</label><br><button class="btn red" id="ss">Save settings</button>
+ <p class="mut" style="margin-top:1rem">Order alerts (Telegram/Discord) Cloudflare ke Secrets se chalte hain. README dekhein.</p></div>`;
+ $('#ss').onclick=async()=>{const b={};document.querySelectorAll('[data-s]').forEach(f=>b[f.dataset.s]=f.type==='checkbox'?f.checked:f.value);const r=await api('settings',{method:'PUT',body:JSON.stringify(b)});if(r.ok){D.settings=(await r.json()).settings;toast('Settings saved')}else toast('Error')}}
+async function csv(t){const r=await api('csv?type='+t),b=await r.blob(),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=t+'.csv';a.click()}
+$('#csvO').onclick=()=>csv('orders');$('#csvR').onclick=()=>csv('reviews');
+if(T)start();
+</script></body></html>
